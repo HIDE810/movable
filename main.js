@@ -45,22 +45,15 @@ input_file.onchange = function (){
         shaObj.update(keyY);
         const hash = shaObj.getHash("HEX").match(/.{2}/g).slice(0, 16);
         
-        var start = 0;
-        var end = 4;
-        
         var id0 = [];
         
-        for(let i=0; i<4; i++) {
-            
-            id0.push(hash.slice(start, end).reverse().join(''));
-            
-            start += 4;
-            end += 4;
+        for(let i=0; i<=12; i+=4) {
+            id0.push(hash.slice(i, i+4).reverse().join(''));
         }
         
-        document.getElementById("lfcs").innerHTML = lfcs + "&nbsp<a id='download' download='LocalFriendCodeSeed_B' onclick='handleDownload()'><button>Download</button></a>";
-        document.getElementById("keyY").innerHTML = keyY;
-        document.getElementById("id0").innerHTML = id0.join('');
+        document.getElementById("lfcs").innerHTML = lfcs.toUpperCase() + "&nbsp<a id='download' download='LocalFriendCodeSeed_B' onclick='handleDownload()'><button>Download</button></a>";
+        document.getElementById("keyY").innerHTML = keyY.toUpperCase();
+        document.getElementById("id0").innerHTML = id0.join('').toUpperCase();
         document.getElementById("error").innerHTML = "";
     };
     
